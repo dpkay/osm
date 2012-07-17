@@ -71,7 +71,7 @@ class OsmGraph
     faces_.push_back(face);
   }
 	
-  bool RecomputeFaceList() {
+  bool Flush() {
     std::vector<std::vector<boost::graph_traits<BglGraph>::edge_descriptor> > embedding(
       boost::num_vertices(bgl_graph_));
     bool isPlanar = boost::boyer_myrvold_planarity_test(

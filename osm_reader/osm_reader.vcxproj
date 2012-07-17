@@ -69,9 +69,9 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">c:\code\deps\glew-1.7.0;C:\code\deps\mpir;c:\code\deps\mpfr\src;C:\code\deps\openmesh\src;c:\code\deps\CGAL_4_0_2\include;c:\code\deps\eigen;$(IncludePath);C:\code\deps\expat-2.1.0\Source\lib;c:\code\deps\boost_1_50_0;c:\code\src\miro\core</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">c:\code\deps\glew-1.7.0\include;C:\code\deps\mpir;c:\code\deps\mpfr\src;C:\code\deps\openmesh\src;c:\code\deps\CGAL_4_0_2\include;c:\code\deps\eigen;$(IncludePath);C:\code\deps\expat-2.1.0\Source\lib;c:\code\deps\boost_1_50_0;c:\code\src\miro\core</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">c:\code\deps\glew-1.7.0\include;C:\code\deps\mpir;c:\code\deps\mpfr\src;C:\code\deps\openmesh\src;c:\code\deps\CGAL_4_0_2\include;c:\code\deps\eigen;$(IncludePath);C:\code\deps\expat-2.1.0\Source\lib;c:\code\deps\boost_1_50_0;c:\code\src\miro\core</IncludePath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">c:\code\inst\x64\Debug;c:\code\deps\boost_1_50_0\stage\lib;c:\code\deps\CGAL_4_0_2\lib;C:\code\deps\openmesh\lib;C:\code\deps\expat-2.1.0\Source\win64\bin\Debug;C:\code\deps\expat-2.1.0\Source\win64\bin\Release;$(VCInstallDir)lib\amd64;$(VCInstallDir)atlmfc\lib\amd64;$(WindowsSdkDir)lib\x64</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">c:\code\inst\x64\Debug;c:\code\deps\boost_1_50_0\stage\lib;c:\code\deps\CGAL_4_0_2\lib;C:\code\deps\openmesh\lib;C:\code\deps\expat-2.1.0\Source\win64\bin\Debug;C:\code\deps\expat-2.1.0\Source\win64\bin\Release;$(VCInstallDir)lib\amd64;$(VCInstallDir)atlmfc\lib\amd64;$(WindowsSdkDir)lib\x64;c:\code\deps\glew-1.7.0\lib</LibraryPath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">c:\code\deps\glew-1.7.0\lib;c:\code\inst\x64\Release;c:\code\deps\boost_1_50_0\stage\lib;c:\code\deps\CGAL_4_0_2\lib;C:\code\deps\openmesh\lib;C:\code\deps\expat-2.1.0\Source\win64\bin\Debug;C:\code\deps\expat-2.1.0\Source\win64\bin\Release;$(VCInstallDir)lib\amd64;$(VCInstallDir)atlmfc\lib\amd64;$(WindowsSdkDir)lib\x64</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -108,14 +108,14 @@
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
       <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
-      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Zm1000 /MP %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libOpenMeshCored.lib;libOpenMeshToolsd.lib;libexpatd.lib;qtmaind.lib;QtCored4.lib;QtGuid4.lib;QtXmld4.lib;QtOpenGLd4.lib;opengl32.lib;glu32.lib;QtXmlPatternsd4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>miro.lib;glew32.lib;libOpenMeshCored.lib;libOpenMeshToolsd.lib;libexpatd.lib;qtmaind.lib;QtCored4.lib;QtGuid4.lib;QtXmld4.lib;QtOpenGLd4.lib;opengl32.lib;glu32.lib;QtXmlPatternsd4.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -190,6 +190,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mapviewerwidget.cpp" />
     <ClCompile Include="MeshWriter.cpp" />
+    <ClCompile Include="OsmArrangement.cpp" />
     <ClCompile Include="OsmGraph.cpp" />
     <ClCompile Include="OsmMeshNode.cpp" />
     <ClCompile Include="OsmXmlFile.cpp" />
@@ -202,6 +203,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="conversions.h" />
     <ClInclude Include="GeneratedFiles\ui_mapviewerwidget.h" />
     <ClInclude Include="GeneratedFiles\ui_osm_reader.h" />
     <CustomBuild Include="mapviewerwidget.h">
@@ -226,6 +228,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="osm2pov\global.h" />
+    <ClInclude Include="OsmArrangement.h" />
     <ClInclude Include="OsmMeshNode.h" />
     <ClInclude Include="polygon.h" />
     <ClInclude Include="types.h" />

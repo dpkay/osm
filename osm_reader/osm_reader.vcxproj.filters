@@ -74,6 +74,9 @@
     <ClCompile Include="OsmMeshNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OsmArrangement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -104,6 +107,12 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="OsmMeshNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OsmArrangement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="conversions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

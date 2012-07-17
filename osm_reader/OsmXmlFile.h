@@ -29,7 +29,8 @@ class OsmXmlFile
 
 	~OsmXmlFile(void);
 
-	bool ParseOsmNode(OsmGraph* graph, const QDomElement& element) {
+  template <typename Graph>
+	bool ParseOsmNode(Graph* graph, const QDomElement& element) {
     //qDebug() << "parsing node" << element.attribute("id");
 		if (!element.hasAttribute("id") || 
 		    !element.hasAttribute("lat") ||
@@ -44,14 +45,15 @@ class OsmXmlFile
       element.attribute("lon").toDouble());
     lat_lon -= min_lat_lon_;
 
-    std::cerr << id << lat_lon;
+   // std::cerr << id << lat_lon;
     //qDebug() << id << lat_lon;
 
 		graph->MakeAndAddVertex(id, lat_lon);
 		return true;
 	}
 
-	bool ParseOsmWay(OsmGraph* graph, const QDomElement& element) {
+  template <typename Graph>
+	bool ParseOsmWay(Graph* graph, const QDomElement& element) {
 	//	qDebug() << "parsing way";
     QVector<uint> nodes;
     QString highway_type;
@@ -74,18 +76,19 @@ class OsmXmlFile
 
     if(!highway_type.isNull())
       qDebug() << qPrintable(highway_type);
-    if(highway_type == "residential") {
+    //if(highway_type == "residential") {
       for(size_t i=0; i<nodes.size()-1; ++i) {
         graph->MakeAndAddEdge(nodes[i], nodes[i+1]);
       }
-    }
+    //}
     //graph->MakeAndAddEdge(nodes[1], nodes[0]);
     //graph->MakeAndAddEdge(nodes[nodes.size()-1], nodes[0]);
     //qDebug() << highway_type << nodes.size();
 		return true;
 	}
 
-	bool PopulateGraph(OsmGraph* graph) {
+  template <typename Graph>
+	bool PopulateGraph(Graph* graph) {
 		QDomNode node = root_element_.firstChild();
     
     // get bounds
@@ -104,12 +107,12 @@ class OsmXmlFile
       element = node.toElement();
       if (!element.isNull()) {
 				if (element.tagName() == "node") {
-					if (!ParseOsmNode(graph, element)) {
+					if (!ParseOsmNode<Graph>(graph, element)) {
 						return false;
 					}
 				} else
 				if(element.tagName() == "way") {
-					if(!ParseOsmWay(graph, element)) {
+					if(!ParseOsmWay<Graph>(graph, element)) {
 						return false;
 					}
 				}

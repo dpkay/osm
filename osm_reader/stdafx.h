@@ -17,3 +17,12 @@
 #include<CGAL/Exact_predicates_inexact_constructions_kernel.h>
 #include<CGAL/Polygon_2.h>
 #include<CGAL/create_offset_polygons_2.h>
+#include <CGAL/Cartesian.h>
+#include <CGAL/Quotient.h>
+#include <CGAL/MP_Float.h>
+#include <CGAL/Arr_segment_traits_2.h>
+#include <CGAL/Arr_polyline_traits_2.h>
+#include <CGAL/Arrangement_2.h>
+#include <QDomDocument>
+#include <CGAL/IO/Arr_iostream.h>
+#include <fstream>

@@ -77,6 +77,9 @@
     <ClCompile Include="OsmArrangement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OsmPolygonSet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -113,6 +116,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="conversions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OsmPolygonSet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

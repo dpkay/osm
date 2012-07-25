@@ -1,5 +1,9 @@
+#define NOMINMAX
+
 #include <GL/glew.h>
-#include <QtGui>
+#include <QtCore/QVariant>
+#include <QGLWidget>
+#include <miro/miro.h>
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/properties.hpp>
@@ -13,6 +17,8 @@
 #include <string>
 #include <boost/graph/boyer_myrvold_planar_test.hpp>
 #include "types.h"
+
+
 
 #include<CGAL/Exact_predicates_inexact_constructions_kernel.h>
 #include<CGAL/Polygon_2.h>

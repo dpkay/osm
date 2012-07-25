@@ -3,6 +3,7 @@
 #include <string>
 #include <QDomDocument>
 #include "OsmGraph.h"
+#include <QFile>
 
 class OsmXmlFile
 {

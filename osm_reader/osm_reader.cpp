@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "osm_reader.h"
 //#include "MeshWriter.h"
 #include "OsmXmlFile.h"
@@ -33,9 +32,17 @@ osm_reader::osm_reader(QWidget *parent, Qt::WFlags flags)
   qDebug() << "loading arrangement";
   OsmArrangementPtr arrangement =
     OsmArrangement::FromFile("sf_try1.cgal_arrangement");
-  qDebug() << "done loading arrangement";
+  arrangement->Flush();
 
-  arrangement->foo("sf_try1.obj");
+
+  OsmPolygonSetPtr polygon_set(new OsmPolygonSet);
+  qDebug() << "populating polygon set";
+  arrangement->PopulatePolygonSet(polygon_set);
+  qDebug() << "offsetting";
+  polygon_set->RemoveDegeneratePolygons();
+  polygon_set->Offset(1e-4f);
+  qDebug() << "writing";
+  polygon_set->WriteToObjFile("sf_try1_poly2.obj");
 
   //QFile epsFile("foo.eps");
   //epsFile.open(QIODevice::WriteOnly | QIODevice::Text);
